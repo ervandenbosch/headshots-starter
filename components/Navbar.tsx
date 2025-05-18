@@ -1,7 +1,6 @@
 import { AvatarIcon } from "@radix-ui/react-icons";
 import { Camera } from "lucide-react"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { createClient } from "@/utils/supabase/server";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +12,6 @@ import {
 import Link from "next/link";
 import { Button } from "./ui/button";
 import React from "react";
-import { Database } from "@/types/supabase";
 import ClientSideCredits from "./realtime/ClientSideCredits";
 import { ThemeToggle } from "./homepage/theme-toggle";
 
@@ -24,7 +22,7 @@ const packsIsEnabled = process.env.NEXT_PUBLIC_TUNE_TYPE === "packs";
 export const revalidate = 0;
 
 export default async function Navbar() {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = createClient()
 
   const {
     data: { user },
@@ -50,8 +48,8 @@ export default async function Navbar() {
               Home
             </Link>
             {packsIsEnabled && (
-              <Link href="/overview/packs" className="text-sm font-medium hover:text-primary transition-colors">
-                Packs
+              <Link href="/overview/categories" className="text-sm font-medium hover:text-primary transition-colors">
+                Categories
               </Link>
             )}
             {stripeIsConfigured && (

@@ -78,7 +78,7 @@ export default function ClientSideModelsList({
             Get started by training your first model.
           </h1>
           <div>
-            <Link href={packsIsEnabled ? "/overview/packs" : "/overview/models/train/raw-tune"}>
+            <Link href={packsIsEnabled ? "/overview/categories" : "/overview/models/train/raw-tune"}>
               <Button size={"lg"}>Train model</Button>
             </Link>
           </div>

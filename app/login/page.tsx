@@ -1,8 +1,9 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from '@/utils/supabase/server'
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { Database } from "../../types/supabase";
 import { Login } from "./components/Login";
+
 
 export const dynamic = "force-dynamic";
 
@@ -11,8 +12,7 @@ export default async function LoginPage({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const supabase = createServerComponentClient<Database>({ cookies });
-
+  const supabase = await createClient()
   const {
     data: { user },
   } = await supabase.auth.getUser();

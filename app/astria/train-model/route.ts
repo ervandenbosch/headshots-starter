@@ -1,7 +1,5 @@
-import { Database } from "@/types/supabase";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from '@/utils/supabase/server';
 import axios from "axios";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -26,7 +24,7 @@ export async function POST(request: Request) {
   const name = payload.name;
   const characteristics = payload.characteristics;
 
-  const supabase = createRouteHandlerClient<Database>({ cookies });
+  const supabase = createClient();
 
   const {
     data: { user },

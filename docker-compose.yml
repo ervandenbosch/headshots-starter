@@ -1,0 +1,15 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.local
+    deploy:
+      resources:
+        limits:
+          cpus: "0.7"
+          memory: 750M
+    ports:
+      - "3001:3001"
+    restart: always
